@@ -17,8 +17,9 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
-from PyQt5.QtCore import QSettings
+from PySide6.QtCore import QSettings
 from UI.NetworkDeviceSelect import NetworkDeviceSelectForm
+from PySide6.QtWidgets import QDialog
 
 
 class Config(object):
@@ -88,8 +89,8 @@ class Config(object):
 
     def modify_network_device(self):
         network_device_select_form = NetworkDeviceSelectForm()
-        return_code = network_device_select_form.exec_()
-        if return_code == network_device_select_form.Accepted:
+        return_code = network_device_select_form.exec()
+        if return_code == QDialog.Accepted:
             device_tag = network_device_select_form.get_selected_device()
             self.save('Network/Local/Device', device_tag)
             return True
@@ -98,7 +99,7 @@ class Config(object):
     @staticmethod
     def force_get_network_device(only_name=True):
         network_device_select_form = NetworkDeviceSelectForm(force=True)
-        network_device_select_form.exec_()
+        network_device_select_form.exec()
         return network_device_select_form.get_selected_device(only_name)
 
     def init_all(self):

@@ -17,8 +17,8 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
-from PyQt5.QtWidgets import QDialog, QListWidgetItem, QMessageBox
-from PyQt5.QtCore import Qt, QCoreApplication
+from PySide6.QtWidgets import QDialog, QListWidgetItem, QMessageBox
+from PySide6.QtCore import Qt, QCoreApplication
 from .RemoteCommandGroupUI import Ui_RemoteCommandGroupDialog
 from .RemoteCommandGroupAdd import RemoteCommandGroupAddForm
 
@@ -43,8 +43,8 @@ class RemoteCommandGroupForm(QDialog):
 
     def add_command(self):
         add_form = RemoteCommandGroupAddForm(self)
-        result = add_form.exec_()
-        if result != add_form.Accepted:
+        result = add_form.exec()
+        if result != QDialog.Accepted:
             return
         title = add_form.ui.title.text()
         command = add_form.ui.command.toPlainText()

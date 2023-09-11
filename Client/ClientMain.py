@@ -18,9 +18,8 @@
 """
 
 from Utils import LoadTranslation
-import PyQt5.sip
-from PyQt5.QtWidgets import QWidget, QApplication, QMessageBox
-from PyQt5.QtCore import Qt, QCoreApplication, QTranslator
+from PySide6.QtWidgets import QWidget, QApplication, QMessageBox
+from PySide6.QtCore import Qt, QCoreApplication, QTranslator
 import sys
 import os
 import logging
@@ -32,8 +31,6 @@ from Module import Theme
 
 from UI.Main import MainForm
 
-QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
-QApplication.setAttribute(Qt.AA_DisableWindowContextHelpButton)
 app = QApplication(sys.argv)
 app.setStyleSheet(Theme.load_stylesheet())
 app.setQuitOnLastWindowClosed(False)
@@ -78,4 +75,4 @@ main_window = MainWindow()
 
 if __name__ == '__main__':
     main_window.show()
-    sys.exit(app.exec_())
+    sys.exit(app.exec())

@@ -17,9 +17,9 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
-from PyQt5.QtCore import QObject, QBuffer, QIODevice
-from PyQt5.QtWidgets import QApplication
-from PyQt5.QtGui import QImage, QPainter, QCursor
+from PySide6.QtCore import QObject, QBuffer, QIODevice
+from PySide6.QtWidgets import QApplication
+from PySide6.QtGui import QImage, QPainter, QCursor
 import socket
 import struct
 from threading import Thread
@@ -63,7 +63,7 @@ class RemoteSpy(QObject):
                 buffer = QBuffer()
                 buffer.open(QIODevice.ReadWrite)
                 img.save(buffer, 'JPEG', quality=60)
-                img_encoded = zlib.compress(buffer.data())
+                img_encoded = zlib.compress(bytes(buffer.data()))
                 buffer.close()
                 header = struct.pack('!2i', RemoteSpyFlag.PackInfo, len(img_encoded))
                 self.socket_obj.send(header)

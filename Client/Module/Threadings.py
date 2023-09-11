@@ -17,8 +17,8 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
-from PyQt5.QtCore import QThread, pyqtSignal
-from PyQt5.QtGui import QPixmap
+from PySide6.QtCore import QThread, Signal
+from PySide6.QtGui import QPixmap
 from Module.ClassBroadcast import ClassBroadcast
 from Module.NetworkDiscover import NetworkDiscover
 from Module.ScreenBroadcast import ScreenBroadcast
@@ -26,13 +26,13 @@ from Module.RemoteSpy import RemoteSpy
 
 
 class ClassBroadcastThread(QThread):
-    message_received = pyqtSignal(str)
-    reset_all = pyqtSignal()
-    toggle_screen_broadcats = pyqtSignal(bool)
-    start_remote_spy = pyqtSignal()
-    quit_self = pyqtSignal()
-    client_file_received = pyqtSignal()
-    toggle_file_server = pyqtSignal(bool, str)
+    message_received = Signal(str)
+    reset_all = Signal()
+    toggle_screen_broadcats = Signal(bool)
+    start_remote_spy = Signal()
+    quit_self = Signal()
+    client_file_received = Signal()
+    toggle_file_server = Signal(bool, str)
 
     def __init__(self, config):
         super(ClassBroadcastThread, self).__init__()
@@ -47,7 +47,7 @@ class ClassBroadcastThread(QThread):
 
 
 class NetworkDiscoverThread(QThread):
-    server_info = pyqtSignal(str, bool, bool, str)
+    server_info = Signal(str, bool, bool, str)
 
     def __init__(self, config):
         super(NetworkDiscoverThread, self).__init__()
@@ -62,7 +62,7 @@ class NetworkDiscoverThread(QThread):
 
 
 class ScreenBroadcastThread(QThread):
-    frame_received = pyqtSignal(QPixmap)
+    frame_received = Signal(QPixmap)
 
     def __init__(self, config):
         super(ScreenBroadcastThread, self).__init__()

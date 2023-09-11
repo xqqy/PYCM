@@ -17,10 +17,10 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
-from PyQt5.QtWidgets import QMainWindow, QWidget, QApplication, QDialog, QListWidgetItem, QLabel, QMessageBox, \
-    QInputDialog, QLineEdit, QSystemTrayIcon, QAction, QMenu
-from PyQt5.QtCore import Qt, QSize, QEvent, QUrl, QCoreApplication
-from PyQt5.QtGui import QIcon, QCloseEvent
+from PySide6.QtWidgets import QMainWindow, QWidget, QApplication, QDialog, QListWidgetItem, QLabel, QMessageBox, \
+    QInputDialog, QLineEdit, QSystemTrayIcon,  QMenu
+from PySide6.QtCore import Qt, QSize, QEvent, QUrl, QCoreApplication
+from PySide6.QtGui import QIcon, QCloseEvent ,QAction
 import time
 from functools import partial
 
@@ -105,7 +105,7 @@ class DashboardForm(QMainWindow):
         self.tray_icon_menu.addAction(QAction(self._translate('DashboardForm', 'Exit'), self, triggered=self.close))
         self.tray_icon.setIcon(QIcon(':/Core/Core/Logo.png'))
         self.tray_icon.setContextMenu(self.tray_icon_menu)
-        self.tray_icon.activated[QSystemTrayIcon.ActivationReason].connect(self.show_window)
+        self.tray_icon.activated.connect(self.show_window)
         self.__update_tray_tooltip()
         self.tray_icon.show()
 
@@ -243,8 +243,8 @@ class DashboardForm(QMainWindow):
         if not targets:
             return
         send_message_group_dialog = SendMessageGroupForm(self)
-        result = send_message_group_dialog.exec_()
-        if result == send_message_group_dialog.Accepted:
+        result = send_message_group_dialog.exec()
+        if result == QDialog.Accepted:
             message = send_message_group_dialog.ui.send_message_input.toPlainText()
             self.class_broadcast_object.send_text(targets, message)
             self.__log_append(self._translate('DashboardForm', 'Message send: %s') % message)
@@ -254,8 +254,8 @@ class DashboardForm(QMainWindow):
         if not targets:
             return
         remote_command_group_dialog = RemoteCommandGroupForm(self)
-        result = remote_command_group_dialog.exec_()
-        if result == remote_command_group_dialog.Accepted:
+        result = remote_command_group_dialog.exec()
+        if result == QDialog.Accepted:
             command = remote_command_group_dialog.ui.command_select.selectedItems()
             if len(command) == 0:
                 QMessageBox.critical(self, self._translate('DashboardForm', 'Error'),
@@ -314,7 +314,7 @@ class DashboardForm(QMainWindow):
         self.file_server_window.show()
 
     def show_about(self):
-        AboutDialog(self).exec_()
+        AboutDialog(self).exec()
 
     def show_window(self, reason=None):
         if reason is not False and reason != QSystemTrayIcon.DoubleClick:

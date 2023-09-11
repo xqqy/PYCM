@@ -20,7 +20,7 @@
 ## Introduction
 
 This program is an e-classroom management system written by python.
-It contains both `Client(student side)` and `Console(teacher side)`. GUI written by `PyQt5`, supporting all platforms.
+It contains both `Client(student side)` and `Console(teacher side)`. GUI written by `PySide6`, supporting all platforms.
 
 ## Features
 

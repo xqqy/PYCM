@@ -17,8 +17,8 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
-from PyQt5.QtWidgets import QWidget
-from PyQt5.QtCore import Qt, QCoreApplication
+from PySide6.QtWidgets import QWidget
+from PySide6.QtCore import Qt, QCoreApplication
 import socket
 from .SendMessageUI import Ui_SendMessageForm
 

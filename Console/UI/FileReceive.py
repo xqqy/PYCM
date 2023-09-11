@@ -17,9 +17,9 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
-from PyQt5.QtWidgets import QDialog, QHeaderView, QTableWidgetItem, QLabel, QFileDialog
-from PyQt5.QtCore import Qt, QUrl, QCoreApplication
-from PyQt5.QtGui import QDesktopServices
+from PySide6.QtWidgets import QDialog, QHeaderView, QTableWidgetItem, QLabel, QFileDialog
+from PySide6.QtCore import Qt, QUrl, QCoreApplication
+from PySide6.QtGui import QDesktopServices
 import os
 from .FileReceiveUI import Ui_FileReceiveDialog
 

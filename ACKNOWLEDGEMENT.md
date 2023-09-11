@@ -2,7 +2,7 @@
 
 ### The PYCM project uses and modifies the following projects
 
-## PyQt5
+## PySide6
 
 * https://riverbankcomputing.com/software/pyqt/
 * GNU General Public License v3.0

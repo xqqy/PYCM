@@ -17,8 +17,8 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
-from PyQt5.QtWidgets import QDialog, QListWidgetItem
-from PyQt5.QtCore import Qt
+from PySide6.QtWidgets import QDialog, QListWidgetItem
+from PySide6.QtCore import Qt
 from .SendMessageGroupUI import Ui_SendMessageGroupDialog
 
 

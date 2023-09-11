@@ -17,10 +17,10 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
-from PyQt5.QtWidgets import QWidget, QTableWidget, QTableWidgetItem, QAbstractItemView, QHeaderView, \
+from PySide6.QtWidgets import QWidget, QTableWidget, QTableWidgetItem, QAbstractItemView, QHeaderView, \
     QFileIconProvider, QApplication, QFileDialog, QMessageBox
-from PyQt5.QtCore import Qt, QFileInfo, QThread, pyqtSignal, QCoreApplication
-from PyQt5.QtGui import QIcon, QDragEnterEvent, QDragMoveEvent, QDropEvent, QCloseEvent
+from PySide6.QtCore import Qt, QFileInfo, QThread, Signal, QCoreApplication
+from PySide6.QtGui import QIcon, QDragEnterEvent, QDragMoveEvent, QDropEvent, QCloseEvent
 import os
 import zipfile
 from io import BytesIO
@@ -29,8 +29,8 @@ from .FileSendUI import Ui_FileSendForm
 
 
 class FileCompressThread(QThread):
-    file_buffer = pyqtSignal(bytes)
-    file_finished = pyqtSignal(int)
+    file_buffer = Signal(bytes)
+    file_finished = Signal(int)
     file_list = None
 
     def __init__(self, file_list):
@@ -50,7 +50,7 @@ class FileCompressThread(QThread):
 class FileSendThread(QThread):
     private_message_object = None
     buffer = None
-    file_send_progress = pyqtSignal(float)
+    file_send_progress = Signal(float)
 
     def __init__(self, private_message_object, buffer):
         super(FileSendThread, self).__init__()

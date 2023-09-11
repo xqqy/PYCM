@@ -18,9 +18,9 @@
 """
 
 from Utils import LoadTranslation
-import PyQt5.sip
-from PyQt5.QtWidgets import QApplication
-from PyQt5.QtCore import Qt, QTranslator
+#import PySide6.sip
+from PySide6.QtWidgets import QApplication,QDialog
+from PySide6.QtCore import Qt, QTranslator
 import sys
 import os
 import logging
@@ -34,8 +34,6 @@ from UI.Login import LoginForm
 from UI.Dashboard import DashboardForm
 from UI.NetworkDeviceSelect import NetworkDeviceSelectForm
 
-QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
-QApplication.setAttribute(Qt.AA_DisableWindowContextHelpButton)
 app = QApplication(sys.argv)
 app.setStyleSheet(Theme.load_stylesheet())
 app.setQuitOnLastWindowClosed(False)
@@ -68,10 +66,10 @@ class DashboardWindow(DashboardForm):
         if is_debug:
             login.ui.username.setText('admin')
             login.ui.password.setText('123456')
-        if login.exec_() != login.Accepted:
+        if login.exec() != QDialog.Accepted:
             sys.exit(0)
         network_devices_select_dialog = NetworkDeviceSelectForm(self)
-        if network_devices_select_dialog.exec_() != network_devices_select_dialog.Accepted:
+        if network_devices_select_dialog.exec() != QDialog.Accepted:
             sys.exit(0)
         network_device = network_devices_select_dialog.get_selected_device()
         self.init_network_device(network_device)
@@ -85,4 +83,4 @@ class DashboardWindow(DashboardForm):
 dashboard_window = DashboardWindow()
 
 if __name__ == '__main__':
-    sys.exit(app.exec_())
+    sys.exit(app.exec())

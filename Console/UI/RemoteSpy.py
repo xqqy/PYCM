@@ -17,8 +17,8 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
-from PyQt5.QtWidgets import QWidget
-from PyQt5.QtGui import QResizeEvent, QCloseEvent
+from PySide6.QtWidgets import QWidget
+from PySide6.QtGui import QResizeEvent, QCloseEvent
 from .RemoteSpyUI import Ui_RemoteSpy
 
 

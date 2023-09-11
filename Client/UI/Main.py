@@ -17,9 +17,9 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
-from PyQt5.QtWidgets import QWidget, QSystemTrayIcon, QAction, QMenu, QMessageBox, QApplication
-from PyQt5.QtCore import Qt, QPoint, QTimer, pyqtSignal, QCoreApplication
-from PyQt5.QtGui import QMouseEvent, QIcon, QCloseEvent
+from PySide6.QtWidgets import QWidget, QSystemTrayIcon, QMenu, QMessageBox, QApplication
+from PySide6.QtCore import Qt, QPoint, QTimer, Signal, QCoreApplication
+from PySide6.QtGui import QMouseEvent, QIcon, QCloseEvent,QAction, QGuiApplication
 import socket
 import platform
 import subprocess
@@ -59,8 +59,7 @@ class MainForm(QWidget):
         self.ui.setupUi(self)
         self.setWindowFlags(Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint | Qt.Tool)
         self.setAttribute(Qt.WA_TranslucentBackground)
-        desktop = QApplication.desktop()
-        self.move(int(desktop.width() - 450), 65)
+        self.move(int(QGuiApplication.primaryScreen().availableGeometry().width() - 450), 65)
         self.screen_broadcast_window = ScreenBroadcastForm(parent)
         self.file_send_window = FileSendForm(self.parent)
         self.messaging_window = SendMessageForm(self.parent)
@@ -125,7 +124,7 @@ class MainForm(QWidget):
         self.tray_icon = QSystemTrayIcon(self)
         self.tray_icon.setIcon(QIcon(':/Core/Core/Logo.png'))
         self.tray_icon.setContextMenu(self.tray_icon_menu)
-        self.tray_icon.activated[QSystemTrayIcon.ActivationReason].connect(self.iconActivated)
+        self.tray_icon.activated.connect(self.iconActivated)
         self.update_tray_tooltip()
         self.tray_icon.show()
 
@@ -174,7 +173,7 @@ class MainForm(QWidget):
         self.messaging_window.show()
 
     def show_about(self):
-        AboutDialog(self).exec_()
+        AboutDialog(self).exec()
 
     def start_remote_spy(self):
         self.remote_spy_thread.start()

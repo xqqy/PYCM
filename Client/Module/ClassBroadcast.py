@@ -17,7 +17,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
-from PyQt5.QtCore import QObject
+from PySide6.QtCore import QObject
 import socket
 import time
 import struct

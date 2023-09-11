@@ -17,8 +17,8 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
-from PyQt5.QtWidgets import QDialog
-from PyQt5.QtCore import QCoreApplication
+from PySide6.QtWidgets import QDialog
+from PySide6.QtCore import QCoreApplication
 from .AboutUI import Ui_AboutDialog
 
 try:

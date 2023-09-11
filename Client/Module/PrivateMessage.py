@@ -17,9 +17,9 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
-from PyQt5.QtCore import pyqtSignal, QObject, QBuffer, QIODevice, Qt
-from PyQt5.QtWidgets import QApplication
-from PyQt5.QtGui import QImage
+from PySide6.QtCore import Signal, QObject, QBuffer, QIODevice, Qt
+from PySide6.QtWidgets import QApplication
+from PySide6.QtGui import QImage
 import socket
 import struct
 from threading import Thread
@@ -36,7 +36,7 @@ class PrivateMessage(QObject):
     socket_port = None
     socket_buffer_size = None
     socket_obj = None
-    file_send_progress = pyqtSignal(float)
+    file_send_progress = Signal(float)
 
     def __init__(self, config):
         super(PrivateMessage, self).__init__()
@@ -69,13 +69,13 @@ class PrivateMessage(QObject):
         self.send_data(PrivateMessageFlag.ClientNotify, b'')
 
     def screen_spy_send(self):
-        img = QApplication.primaryScreen().grabWindow(QApplication.desktop().winId())
+        img = QApplication.primaryScreen().grabWindow(0)
         img = img.scaled(360, 203, Qt.KeepAspectRatio)
         buffer = QBuffer()
         buffer.open(QIODevice.ReadWrite)
         img.save(buffer, 'JPEG', quality=75)
-        img_compressed = zlib.compress(buffer.data())
         buffer.close()
+        img_compressed = zlib.compress(bytes(buffer.buffer()))
         self.send_data(PrivateMessageFlag.ClientScreen, img_compressed)
 
     def send_file(self, file_buffer):

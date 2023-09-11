@@ -36,7 +36,7 @@ jobs:
         run: |
           nuitka3 --standalone \
                   --include-data-file=Translation/*.qm=Translation/ \
-                  --enable-plugin=pyqt5 --enable-plugin=multiprocessing \
+                  --enable-plugin=PySide6 --enable-plugin=multiprocessing \
                   --assume-yes-for-downloads --disable-ccache --remove-output \
                   --output-dir=Build ConsoleMain.py
       - name: Zip files
@@ -82,7 +82,7 @@ jobs:
         run: |
           nuitka3 --standalone \
                   --include-data-file=Translation/*.qm=Translation/ \
-                  --enable-plugin=pyqt5 \
+                  --enable-plugin=PySide6 \
                   --assume-yes-for-downloads --disable-ccache --remove-output \
                   --output-dir=Build ClientMain.py
       - name: Zip files

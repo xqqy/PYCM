@@ -17,10 +17,10 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
-from PyQt5.QtCore import QObject, QBuffer, QIODevice
-from PyQt5.QtWidgets import QApplication
-from PyQt5.QtGui import QImage, QPainter, QCursor
-from PyQt5.sip import voidptr
+from PySide6.QtCore import QObject, QBuffer, QIODevice
+from PySide6.QtWidgets import QApplication
+from PySide6.QtGui import QImage, QPainter, QCursor
+##from PySide6.sip import voidptr
 from Module.Packages import ScreenBroadcastFlag
 import socket
 import struct
@@ -70,7 +70,7 @@ class ScreenBroadcast(QObject):
                 buffer = QBuffer()
                 buffer.open(QIODevice.ReadWrite)
                 img.save(buffer, 'JPEG', quality=self.quality)
-                img_encoded = zlib.compress(buffer.data())
+                img_encoded = zlib.compress(bytes(buffer.data()))
                 buffer.close()
                 rounds = len(img_encoded) // payload_size
                 looped_size = rounds * payload_size

@@ -17,8 +17,8 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
-from PyQt5.QtWidgets import QDialog, QApplication, QMessageBox
-from PyQt5.QtCore import QCoreApplication
+from PySide6.QtWidgets import QDialog, QApplication, QMessageBox
+from PySide6.QtCore import QCoreApplication
 import os
 import hashlib
 from .LoginUI import Ui_LoginForm

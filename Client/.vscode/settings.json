@@ -1,0 +1,6 @@
+{
+    "qtForPython.uic.options": [
+        "-o",
+        "${resourceDirname}${pathSeparator}${resourceBasenameNoExtension}.py"
+      ]
+}

@@ -17,8 +17,8 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
-from PyQt5.QtCore import QThread, pyqtSignal
-from PyQt5.QtGui import QPixmap
+from PySide6.QtCore import QThread, Signal
+from PySide6.QtGui import QPixmap
 from Module.LoadConfig import Config
 from Module.NetworkDiscover import NetworkDiscover
 from Module.PrivateMessage import PrivateMessage
@@ -54,11 +54,11 @@ class NetworkDiscoverThread(QThread):
 
 
 class PrivateMessageThread(QThread):
-    client_login_logout = pyqtSignal(str, str, str)
-    client_desktop_received = pyqtSignal(str, object)
-    client_notify_received = pyqtSignal(str)
-    client_file_received = pyqtSignal(str, str)
-    client_message_received = pyqtSignal(str, str)
+    client_login_logout = Signal(str, str, str)
+    client_desktop_received = Signal(str, object)
+    client_notify_received = Signal(str)
+    client_file_received = Signal(str, str)
+    client_message_received = Signal(str, str)
 
     def __init__(self, config: Config, parent=None):
         super(PrivateMessageThread, self).__init__(parent)
@@ -99,7 +99,7 @@ class ScreenBroadcastThread(QThread):
 
 
 class RemoteSpyThread(QThread):
-    frame_received = pyqtSignal(QPixmap)
+    frame_received = Signal(QPixmap)
 
     def __init__(self, config: Config, parent=None):
         super(RemoteSpyThread, self).__init__(parent)

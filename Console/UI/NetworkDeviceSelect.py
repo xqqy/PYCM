@@ -17,9 +17,9 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
-from PyQt5.QtWidgets import QDialog
-from PyQt5.QtCore import Qt
-from PyQt5.QtNetwork import QNetworkInterface, QAbstractSocket
+from PySide6.QtWidgets import QDialog
+from PySide6.QtCore import Qt
+from PySide6.QtNetwork import QNetworkInterface, QAbstractSocket
 import socket
 from .NetworkDeviceSelectUI import Ui_NetworkDeviceSelectDialog
 
